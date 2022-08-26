@@ -1,6 +1,7 @@
 # coding=utf-8
 import json
 import time
+from pathlib import Path
 
 import click
 import depthai as dai
@@ -199,13 +200,12 @@ def create_pipeline(port=5000, blob_path=None, config_path=None, host_ip=None):
 
 
 if __name__ == "__main__":
-    from pathlib import Path
 
     blobPath = Path(__file__).parent / "models/yolov5_640_openvino_2021.4_6shave.blob"
     configPath = Path(__file__).parent / "models/yolov5_640.json"
     # Connect to device with pipeline
     device_info = getDeviceInfo()
-    with dai.Device(create_pipeline(blobPath, configPath), device_info) as device:
+    with dai.Device(create_pipeline(port=5000, blob_path=blobPath, config_path=configPath, host_ip=None), device_info) as device:
         click.echo(f">>> Name: {device_info.name}")
         click.echo(f">>> MXID: {device.getMxId()}")
         click.echo(f">>> Cameras: {[c.name for c in device.getConnectedCameras()]}")
