@@ -8,6 +8,7 @@ from . import (
     tcp_streaming_client,
     tcp_streaming_server,
     yolo,
+    modbus_tcp,
 )
 
 __all__ = [
@@ -18,4 +19,5 @@ __all__ = [
     "tcp_streaming_client",
     "tcp_streaming_server",
     "yolo",
+    "modbus_tcp",
 ]

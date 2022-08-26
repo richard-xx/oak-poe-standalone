@@ -45,6 +45,7 @@ opencv-contrib-python = [
     { version = "<=4.5.1.48", python = "<3.10", optional = true },
     { version = "==4.5.4.58", python = "^3.10", optional = true }
 ]
+pymodbustcp = { version = "^0.2.0", optional = true }
 
 
 [tool.poetry.scripts]
@@ -53,12 +54,13 @@ yolo_host = "poe_host:yolo_host.cli"
 tcp_streaming_client_host = "poe_host:tcp_streaming_client_host.cli"
 tcp_streaming_server_host = "poe_host:tcp_streaming_server_host.cli"
 tcp_streaming_server_host_config_focus = "poe_host:tcp_streaming_server_host_config_focus.cli"
+modustcp_host = "poe_host:modbus_tcp_io_test.cli"
 
 
 [tool.poetry.extras]
 pipeline-graph = ["depthai-pipeline-graph", "PySide2"]
 TurboJPEG = ["PyTurboJPEG"]
-host = ["opencv-contrib-python"]
+host = ["opencv-contrib-python","pymodbustcp"]
 
 [[tool.poetry.source]]
 name = 'TUNA'
