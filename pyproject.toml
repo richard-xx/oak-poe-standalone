@@ -1,0 +1,73 @@
+[tool.poetry]
+name = "poe-standalone"
+version = "0.1.0"
+description = "OAK POE STANDALONE SCRIPTS"
+authors = ["richard-xx <richard@arducam.com>"]
+readme = "README.md"
+packages = [
+    { include = "poe_standalone" },
+    { include = "poe_host" }
+]
+classifiers = [
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python :: 3 :: Only",
+]
+
+[tool.poetry.dependencies]
+#python = ">=3.6,<3.11"
+#click = [{ version = "<8.1.0", python = "<3.7" },
+#    { version = "^8.1.0", python = "^3.7" }]
+#rich-click = [{ version = "<1.3.0", python = "<3.7" },
+#    { version = "^1.3.0", python = "^3.7" }]
+#depthai = "^2.17.2.0"
+#loguru = "^0.6.0"
+#numpy = [{ version = "^1.19", python = ">=3.6,<3.7" },
+#    { version = "<1.22", python = ">=3.7,<3.8" },
+#    { version = "^1.22", python = "^3.8" }]
+python = ">=3.7,<3.11"
+click = { version = "^8.1.0", python = "^3.7" }
+rich-click = { version = "^1.3.0", python = "^3.7" }
+depthai = "^2.17.2.0"
+loguru = "*"
+numpy = [{ version = "<1.22", python = ">=3.7,<3.8" },
+    { version = "^1.22", python = "^3.8" }]
+click-params = "*"
+
+# A list of all of the optional dependencies, some of which are included in the
+# below `extras`. They can be opted into by apps.
+depthai-pipeline-graph = { url = "https://github.com/geaxgx/depthai_pipeline_graph/archive/main.tar.gz", optional = true }
+PySide2 = { version = "^5.15.2.1", optional = true }
+PyTurboJPEG = { version = "^1.6.7", optional = true }
+opencv-contrib-python = [
+    { version = "<=4.5.1.48", python = "<3.10", optional = true },
+    { version = "==4.5.4.58", python = "^3.10", optional = true }
+]
+
+
+[tool.poetry.scripts]
+poe_standalone = "poe_standalone:standalone.cli"
+yolo_host = "poe_host:yolo_host.cli"
+tcp_streaming_client_host = "poe_host:tcp_streaming_client_host.cli"
+tcp_streaming_server_host = "poe_host:tcp_streaming_server_host.cli"
+tcp_streaming_server_host_config_focus = "poe_host:tcp_streaming_server_host_config_focus.cli"
+
+
+[tool.poetry.extras]
+pipeline-graph = ["depthai-pipeline-graph", "PySide2"]
+TurboJPEG = ["PyTurboJPEG"]
+host = ["opencv-contrib-python"]
+
+[[tool.poetry.source]]
+name = 'TUNA'
+url = 'https://pypi.tuna.tsinghua.edu.cn/simple'
+
+[[tool.poetry.source]]
+name = 'PIWHEELS'
+url = 'https://www.piwheels.org/simple'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
