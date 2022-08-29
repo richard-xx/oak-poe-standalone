@@ -1,7 +1,8 @@
 ## POE 设备 独立模式
 
-> 独立模式意味着 OAK 摄像头没有连接到主机计算机。这可以通过首先 Flash 引导加载程序，
-> 然后将管道和资产 (NN 模型) Flash 到 OAK 的闪存来实现。
+> 独立运行模式意味着 OAK 相机可以脱离其他计算机自己独立工作，并且可以通过相机端编程来实现和其他设备的自定义数据交互。
+> 该模式下工作，需要把 OAK 相机端运行的程序和 NN 模型全部加载到 OAK 相机内置的 Flash 中保存。
+> 设备启动后，OAK 相机的主控可以将 Flash 中的程序和 NN 模型加载到 OAK 的闪存中运行。
 
 由于主机和设备之间不会有任何通信，因此首先需要删除所有 `XLinkOut` 和 `XLinkIn` 节点。
 这意味着设备只能通过 `Script` 节点（网络协议：HTTP/TCP/UDP）与 “外部世界” 通信。
@@ -9,7 +10,12 @@
 ### Flash 引导加载程序
 
 Bootloader 与 depthai 打包在一起，因此如果您有最新的 depthai 版本，您可以闪存最新的 Bootloader 版本。
-要 Flash 引导加载程序，使用 `poe_standalone flash_bootloader` 。
+要 Flash 引导加载程序，使用 
+
+`python poe_standalone/standalone.py flash_bootloader` 
+
+或 `poe_standalone flash_bootloader` 。
+
 要查看其背后的 API 代码，请参见 
 [FlashBootloader](https://docs.luxonis.com/projects/api/en/latest/samples/bootloader/flash_bootloader/#flash-bootloader)
 示例代码。
@@ -19,7 +25,12 @@ Bootloader 与 depthai 打包在一起，因此如果您有最新的 depthai 版
 已经在设备上 
 [Flash 引导加载程序](#flash-%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F)
 之后，可以将管道连同它的资产 (NN 模型) 一起 Flash 到 OAK 的闪存:
-`poe_standalone flash_pipeline` 或
+
+`python poe_standalone/standalone.py -P <pipeline> flash_pipeline` 
+
+或 `poe_standalone -P <pipeline> flash_pipeline`
+
+代码参考
 
 ```python
 import depthai as dai
@@ -118,11 +129,11 @@ pip install .
 
 管道启动：
 ```shell
-python poe_standalone/standalone.py -P script_mjpeg_server [flash_pipeline]
+python poe_standalone/standalone.py -P <pipeline> [flash_pipeline]
 ```
 或
 ```shell
-poe_standalone -P script_mjpeg_server [flash_pipeline]
+poe_standalone -P <pipeline> [flash_pipeline]
 ```
 
 + [script_http_server](poe_standalone/script_http_server.py) - 通过 HTTP 响应提供静止图像
