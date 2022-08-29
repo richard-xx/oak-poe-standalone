@@ -102,7 +102,8 @@ pip install .
 │                                nfig_focus|tcp_stream                         │
 │                                ing_client|yolo_decod                         │
 │                                ing|yolo_stereo_decod                         │
-│                                ing|custom_pipeline]                          │
+│                                ing|modbus_server_tes                         │
+│                                t|custom_pipeline]                            │
 │ --custom_pipeline  -cp         FILE PATH              The custom pipeline    │
 │                                                       you want to start.     │
 │ --port             -p          INTEGER                NETWORK PORT           │
@@ -149,6 +150,7 @@ poe_standalone -P <pipeline> [flash_pipeline]
 + [yolo_decoding](poe_standalone/yolo/yolo_decoding.py) - 通过 TCP 协议使用 OAK PoE 流式传输 yolo 检测结果，
   其中包含标签、置信度和边界框信息 (xmin、 ymin、 xmax、ymax)
 + [yolo_stereo_decoding](poe_standalone/yolo/yolo_stereo_decoding.py) - 与 yolo_decoding 类似，还包括检测到的对象的 XYZ 坐标。
++ [modbus_server_test](poe_standalone/modbus_tcp/modbus_server_test.py) - 将 [pyModbusTCP](https://pymodbustcp.readthedocs.io/) 嵌入 script 节点，实现 ModbusTCP 通讯
 + custom_pipeline - 自定义管道参考代码
  
 ### 主机端测试程序
@@ -166,6 +168,7 @@ tcp_streaming_server_host
 - [tcp_streaming_server_host](poe_host/tcp_streaming_server_host.py)
 - [tcp_streaming_server_host_config_focus](poe_host/tcp_streaming_server_host_config_focus.py)
 - [yolo_host](poe_host/yolo_host.py)
+- [modbus_tcp_io_test](poe_host/modbus_tcp_io_test.py)
 
 ## 自定义管道参考代码
 

@@ -14,6 +14,7 @@ numpy==1.23.2; python_version >= "3.8" and python_version < "4.0"
 opencv-contrib-python==4.5.1.48; python_version < "3.10"
 opencv-contrib-python==4.5.4.58; python_version >= "3.10" and python_version < "4.0"
 pygments==2.13.0; python_full_version >= "3.6.3" and python_full_version < "4.0.0" and python_version >= "3.7" and python_version < "4.0"
+pymodbustcp==0.2.0
 pyside2==5.15.2.1; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.5.0" and python_version < "3.11")
 pyturbojpeg==1.6.7
 qt.py==1.3.7; python_version >= "3.6"

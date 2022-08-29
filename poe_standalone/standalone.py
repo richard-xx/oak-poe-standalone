@@ -11,7 +11,7 @@ import depthai as dai
 import numpy as np
 # import click
 import rich_click as click
-from click_params import IPV4_ADDRESS, IP_ADDRESS
+from click_params import IPV4_ADDRESS
 from validators import ip_address
 try:
     from poe_standalone import script_http_server, script_mjpeg_server
@@ -22,6 +22,7 @@ try:
     )
     from poe_standalone.utils import getDeviceInfo, get_local_ip, lazy_import
     from poe_standalone.yolo import yolo_decoding, yolo_stereo_decoding
+    from poe_standalone.modbus_tcp import modbus_server_test
 except ImportError:
     import script_http_server, script_mjpeg_server
     from tcp_streaming_client import tcp_streaming_client
@@ -31,6 +32,8 @@ except ImportError:
     )
     from utils import getDeviceInfo, get_local_ip, lazy_import
     from yolo import yolo_decoding, yolo_stereo_decoding
+    from modbus_tcp import modbus_server_test
+
 
 create_pipelines = {
     "script_http_server": script_http_server.create_pipeline,
@@ -40,6 +43,7 @@ create_pipelines = {
     "tcp_streaming_client": tcp_streaming_client.create_pipeline,
     "yolo_decoding": yolo_decoding.create_pipeline,
     "yolo_stereo_decoding": yolo_stereo_decoding.create_pipeline,
+    "modbus_server_test": modbus_server_test,
     "custom_pipeline": "",
 }
 
